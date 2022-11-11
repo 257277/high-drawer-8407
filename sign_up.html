@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        #loginbox {
+            width: 40%;
+            margin: auto;
+            height: auto;
+            margin-top: 100px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+
+        form {
+
+            width: 90%;
+            margin: auto;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            font-size: 30px;
+        }
+
+        form input {
+            font-size: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid black;
+
+        }
+
+        form select {
+            font-size: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid black;
+            color: grey;
+        }
+
+        form input[type=submit]:hover {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="nav">
+        <div id="nav1">
+            <span class="slidingmenu" onclick="opennav()">&#9776;</span>
+            <img src="./image/logo.png" alt="logo">
+        </div>
+        <div id="nav2">
+            <a href="./cart.html" class="placeicon"> &#xf07a;</a>
+            <button><a href="./sign_in.html" style="color:white ;">SIGN IN</a></button>
+        </div>
+    </div>
+    <div class="sidenav">
+        <div class="sidenav1">
+            <span onclick="closenav()">&#9776;</span>
+            <img src="./image/logo.png" alt="logo">
+        </div>
+        <a href="./index.html" class="placeicon">&#xf015; <span class="text">Home</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca;<span class="text">Internships</span> </a>
+        <a href="./job.html" class="placeicon">&#xf0b1; <span class="text">Jobs</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
+        <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
+        <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
+        <hr style="width:100%;text-align:left;margin-left:0;border:0.5px solid gray;">
+        <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
+        <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
+    </div>
+
+    <div id="loginbox">
+        <h1>Register Candidate</h1>
+        <p style="font-size:20px;text-align:center;">Already have an account? <a href="./sign_in.html"
+                style="text-decoration: none;">Sign in</a></p>
+        <form action="submit">
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <input type="number" placeholder="Mobile Number">
+            <input type="text" placeholder="City Name">
+            <select name="" id="Preferences">
+                <option value="Preferences...">Preferences</option>
+                <option value="Content Writing">Content Writing</option>
+                <option value="Business Development">Business Development</option>
+                <option value="App Design And Development">App Design And Development</option>
+                <option value="Digital Marketing">Digital Marketing</option>
+                <option value="Finance">Finance</option>
+                <option value="Graphic Designing">Graphic Designing</option>
+            </select>
+            <select>
+                <option value="How did you find us">How did you find us?</option>
+                <option value="From a friend">From a Friend</option>
+                <option value="Google Search Result">Google Search Result</option>
+                <option value="Google Ads">Google Ads</option>
+                <option value="Socila Media">Social Media</option>
+            </select>
+            <select>
+                <option value="What are you looking for?">What are you looking for?</option>
+            </select>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+
+</body>
+<script>
+
+
+
+
+
+
+
+
+
+
+    let opennav = () => {
+        document.querySelector(".sidenav").style.width = "250px";
+    }
+    let closenav = () => {
+        document.querySelector(".sidenav").style.width = "0px";
+    }
+</script>
+
+</html>

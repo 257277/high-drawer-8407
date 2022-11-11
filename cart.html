@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+        #detail {
+            float: right;
+            border: 1px solid black;
+            width: 30%;
+            height: 500px;
+
+            margin-top: 50px;
+            margin-right: 10%;
+        }
+
+        #cart_item {
+            border: 1px solid red;
+            width: 50%;
+            height: auto;
+            margin-top: 70px;
+            margin-left: 10%;
+        }
+
+        #cart_item>div {
+            display: flex;
+        }
+
+        #cart_item>div img {
+            border: 1px solid teal;
+            width: 200px;
+            height: 200px;
+
+        }
+
+        #cart_item>div div:nth-child(2) {
+            border: 1px solid blue;
+            margin-left: 40px;
+        }
+
+        #cart_item>div div:nth-child(2) button {
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: blue;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <div id="nav1">
+            <span class="slidingmenu" onclick="opennav()">&#9776;</span>
+            <img src="./image/logo.png" alt="logo">
+        </div>
+        <div id="nav2">
+            <a href="./cart.html" class="placeicon"> &#xf07a;</a>
+            <button><a href="./sign_in.html">SIGN IN</a></button>
+        </div>
+    </div>
+    <div class="sidenav">
+        <div class="sidenav1">
+            <span onclick="closenav()">&#9776;</span>
+            <img src="./image/logo.png" alt="logo">
+        </div>
+        <a href="./index.html" class="placeicon">&#xf015; <span class="text">Home</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca;<span class="text">Internships</span> </a>
+        <a href="./job.html" class="placeicon">&#xf0b1; <span class="text">Jobs</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
+        <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
+        <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
+        <hr style="width:100%;text-align:left;margin-left:0;border:0.5px solid gray;">
+        <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
+        <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
+    </div>
+    <h1>Cart</h1>
+    <div id="detail">
+        <p>Amount: <span id="TotalPrice">0</span></p>
+        <p>CGST 9%: <span id="aftercgst">0</span></p>
+        <p>SGST 9%: <span id="aftersgst">0</span></p>
+        <div>
+            <h2>Total: <span id="finalprice">0</span></h2>
+        </div>
+        <button onclick="checkout()">CHECKOUT</button>
+    </div>
+
+    <div id="cart_item"></div>
+
+</body>
+
+<script>
+
+    let cartItem = JSON.parse(localStorage.getItem("cart")) || [];
+    let amount = 0;
+    function displayData(cartItem) {
+        document.querySelector("#cart_item").innerText = "";
+        cartItem.forEach((elem) => {
+            let di = document.createElement("div");
+            let d = document.createElement("div");
+            let d1 = document.createElement("div");
+            let title = document.createElement("h2");
+            title.innerText = elem.title;
+
+            let image = document.createElement("img");
+            image.setAttribute("src", elem.image);
+
+            let price = document.createElement("p");
+            price.innerText = elem.price;
+            let x = "";
+            for (let i = 1; i < elem.price.length; i++) {
+                x += elem.price[i];
+            }
+            amount += Number(x);
+            let btn = document.createElement("button");
+            btn.innerText = "Remove";
+            btn.addEventListener("click", () => {
+                console.log(cartItem.indexOf(elem));
+                cartItem.splice(cartItem.indexOf(elem), 1);
+                localStorage.setItem("cart", JSON.stringify(cartItem));
+                amount = 0;
+                displayData(cartItem);
+                prchi();
+            })
+
+            d.append(image);
+            d1.append(title, price, btn)
+            di.append(d, d1);
+            document.querySelector("#cart_item").append(di);
+        });
+
+    }
+    // function removeCart(event) {
+    //     let elem = event.target.value;
+    //     cartItem.splice(cartItem.indexOf(elem), 1);
+    //     localStorage.setItem("cart", JSON.stringify(cartItem));
+    //     displayData(cartItem);
+    // }
+    displayData(cartItem);
+    function prchi() {
+        document.querySelector("#TotalPrice").innerText = "₹" + amount;
+
+        document.querySelector("#aftercgst").innerText = "₹" + Math.ceil(amount * 0.1);
+
+        document.querySelector("#aftersgst").innerText = "₹" + Math.ceil(amount * 0.1);
+
+        document.querySelector("#finalprice").innerText = "₹" + (amount + (Math.ceil(amount * 0.1) * 2));
+    }
+
+    prchi();
+    function checkout() {
+        alert('Thanks For Shopping........')
+    }
+
+
+    let opennav = () => {
+        document.querySelector(".sidenav").style.width = "250px";
+    }
+    let closenav = () => {
+        document.querySelector(".sidenav").style.width = "0px";
+    }
+</script>
+
+</html>
