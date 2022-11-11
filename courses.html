@@ -5,28 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Courses</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="./nav.css">
     <style>
-        #detail {
-            float: right;
+        #courses {
             border: 1px solid black;
-            width: 40%;
-            height: 500px;
-
+            width: 70%;
+            margin: auto;
+            height: auto;
             margin-top: 50px;
+
         }
 
-        #cart_item {
-            border: 1px solid red;
-            width: 60%;
-            height: 1000px;
-            margin-top: 70px;
+        #courses>div {
+            display: flex;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
 
-        h1 {
-            text-align: center;
+        #courses>div div:nth-child(1) img {
+            width: 300px;
+            height: 300px;
+
+        }
+
+        #courses>div div:nth-child(2) {
+
+            padding: 30px;
+        }
+
+        #courses>div div:nth-child(2) h2 {
+            color: blue;
+        }
+
+        #courses>div div:nth-child(2) button {
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: blue;
+        }
+
+        #courses>div div:nth-child(2) p {
+            font-size: 20px;
         }
     </style>
 </head>
@@ -57,23 +79,55 @@
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
-    <h1>Cart</h1>
-    <div id="detail">
 
+    <div id="courses">
 
     </div>
-
-    <div id="cart_item"></div>
-
 </body>
-
 <script>
+    let url = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/course";
+    let data = [];
+    async function courses() {
+        let res = await fetch(url);
+        let out = await res.json();
+        data = out;
+        displayData(data)
+    }
+    courses();
+    function displayData(data) {
+        data.forEach((elem) => {
+            let di = document.createElement("div");
+            let d = document.createElement("div");
+            let d1 = document.createElement("div");
+            let title = document.createElement("h2");
+            title.innerText = elem.title;
+
+            let desc = document.createElement("p");
+            desc.innerText = elem.description;
+
+            let image = document.createElement("img");
+            image.setAttribute("src", elem.image);
+
+            let price = document.createElement("p");
+            price.innerText = elem.price;
+
+            let btn = document.createElement("button");
+            btn.innerText = "Add To Cart";
+
+            d.append(image);
+            d1.append(title, desc, price, btn)
+            di.append(d, d1);
+            document.querySelector("#courses").append(di);
+        });
+    }
+
     let opennav = () => {
         document.querySelector(".sidenav").style.width = "250px";
     }
     let closenav = () => {
         document.querySelector(".sidenav").style.width = "0px";
     }
+
 </script>
 
 </html>

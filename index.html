@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="./nav.css">
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 </head>
 <style>
 
@@ -22,7 +23,7 @@
         </div>
         <div id="nav2">
             <a href="./cart.html" class="placeicon"> &#xf07a;</a>
-            <button>SIGN IN</button>
+            <button><a href="./sign_in.html">SIGN IN</a></button>
         </div>
     </div>
     <div class="sidenav">
@@ -30,21 +31,22 @@
             <span onclick="closenav()">&#9776;</span>
             <img src="./image/logo.png" alt="logo">
         </div>
-        <a href="#" class="placeicon">&#xf015; <span class="text">Home</span></a>
-        <a href="#" class="placeicon">&#xf0ca;<span class="text">Internships</span> </a>
-        <a href="#" class="placeicon">&#xf0b1; <span class="text">Jobs</span></a>
-        <a href="#" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
-        <a href="#" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
+        <a href="./index.html" class="placeicon">&#xf015; <span class="text">Home</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca;<span class="text">Internships</span> </a>
+        <a href="./job.html" class="placeicon">&#xf0b1; <span class="text">Jobs</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
+        <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
         <hr style="width:100%;text-align:left;margin-left:0;border:0.5px solid gray;">
-        <a href="#" class="placeicon">&#xf039;<span class="text">Register</span> </a>
-        <a href="#" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
+        <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
+        <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
 
 
     <div class="search">
         <h1>Let's Get You Ready</h1>
-        <p>The One Stop to Upgrade Your Resume. Expand Your Skillset. Do An Internship. Get Placed</p>
+        <p style="font-size: 20px;">The One Stop to Upgrade Your Resume. Expand Your Skillset. Do An Internship. Get
+            Placed</p>
         <div id="srchfltr">
             <input placeholder="City Name">
             <select name="" id="type">
@@ -62,7 +64,7 @@
                 <option value="Finance">Finance</option>
                 <option value="Graphic Designing">Graphic Designing</option>
             </select>
-            <p>OR</p>
+            <p style="margin-left:30px ;">OR</p>
             <input type="text" placeholder="Search">
             <button>Search</button>
         </div>
@@ -128,7 +130,7 @@
 
             <div>
                 <img src="./image/stock.webp" alt="">
-                <h2>STOCK TRADER</h2>
+                <h2>Tally + GST Course</h2>
             </div>
             <div>
                 <img src="./image/market.jpg" alt="">
@@ -153,9 +155,48 @@
         </div>
     </div>
 
-    <div id="alumin">
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div>
+                    <img src="./image/images (1).jpeg" alt="">
+                    <p style="font-size: 20px;">Wonder Women</p>
+                </div>
+                <div>
+                    <p>"We have been using InternTheory for over a year now and are very happy with the quality of
+                        applications that we receive. Their team has been very helpful in screening applications for the
+                        various internship requirements we had. It has been a delight working with them."</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div>
+                    <img src="./image/images (2).jpeg" alt="">
+                    <p style="font-size: 20px;">James</p>
+                </div>
+                <div>
+                    <p>"I created my profile because I had before Intern Theory, not come across a consultancy that
+                        would execute the responsibility of getting a result for your application irrespective of being
+                        failure or success the way they did. They've set the bars really high! Kudos team!"</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div>
+                    <img src="./image/images.jpeg" alt="">
+                    <p style="font-size: 20px;">Thomas</p>
+                </div>
+                <div>
+                    <p>"If you are more than satisfied with a particular product/firm who gives you more than you expect
+                        then there's no need to find a substitute. Its similar with Intern Theory, the best team who
+                        makes
+                        continuous efforts and always ready to help! Thanks for giving me the best start."</p>
+                </div>
+            </div>
+        </div>
 
     </div>
+
     <div id="bottom">
         <div>
             <div>
@@ -185,7 +226,8 @@
                 <p>Work From Home Internships</p>
             </div>
         </div>
-        <div>
+
+        <div style="font-size: 12px; margin-left:40px;">
             <p>REFUND & CANCELLATION POLICY</p>
             <p>COURSES</p>
             <p>TERMS AND CONDITIONS</p>
@@ -195,6 +237,32 @@
             <p>SITEMAP</p>
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                sisableOnInteraction: false,
+            },
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+    </script>
 
 </body>
 <script>
