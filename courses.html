@@ -94,9 +94,7 @@
         displayData(data)
     }
     courses();
-
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     function displayData(data) {
         data.forEach((elem) => {
             let di = document.createElement("div");
@@ -116,10 +114,12 @@
 
             let btn = document.createElement("button");
             btn.innerText = "Add To Cart";
+
             btn.addEventListener("click", () => {
                 cart.push(elem);
                 localStorage.setItem("cart", JSON.stringify(cart));
             });
+
 
             d.append(image);
             d1.append(title, desc, price, btn)
@@ -127,18 +127,6 @@
             document.querySelector("#courses").append(di);
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     let opennav = () => {

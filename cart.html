@@ -17,10 +17,12 @@
 
             margin-top: 50px;
             margin-right: 10%;
+
         }
 
         #cart_item {
             border: 1px solid red;
+
             width: 50%;
             height: auto;
             margin-top: 70px;
@@ -50,6 +52,7 @@
             border: none;
             color: white;
             background-color: blue;
+
         }
 
         h1 {
@@ -64,6 +67,7 @@
             color: white;
             background-color: blue;
         }
+
     </style>
 </head>
 
@@ -102,6 +106,7 @@
             <h2>Total: <span id="finalprice">0</span></h2>
         </div>
         <button onclick="checkout()">CHECKOUT</button>
+
     </div>
 
     <div id="cart_item"></div>
@@ -109,7 +114,6 @@
 </body>
 
 <script>
-
     let cartItem = JSON.parse(localStorage.getItem("cart")) || [];
     let amount = 0;
     function displayData(cartItem) {
@@ -170,6 +174,7 @@
     function checkout() {
         alert('Thanks For Shopping........')
     }
+
 
 
     let opennav = () => {
