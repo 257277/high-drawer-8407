@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Log In</title>
+
     <link rel="stylesheet" href="./nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <style>
         h1 {
             text-align: center;
+
+            color: #0d419d;
+
         }
 
         #loginbox {
@@ -34,6 +39,12 @@
             font-size: 30px;
         }
 
+
+        form label {
+            color: #0d419d;
+        }
+
+
         form input {
             font-size: 30px;
             margin-top: 20px;
@@ -42,8 +53,15 @@
             border: 1px solid black;
         }
 
+
+        form input[type=submit] {
+            background-color: white;
+            color: #0d419d;
+        }
+
         form input[type=submit]:hover {
-            background-color: blue;
+            background-color: #1f6feb;
+
             color: white;
         }
     </style>
@@ -72,7 +90,6 @@
         <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
         <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
-        <hr style="width:100%;text-align:left;margin-left:0;border:0.5px solid gray;">
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
@@ -82,9 +99,11 @@
         <form action="submit">
 
             <label for="">Email</label>
-            <input type="email" placeholder="Email">
+
+            <input type="email" placeholder="Email" id="email">
             <label for="">Password</label>
-            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Password" id="password">
+
             <p style="font-size:20px;text-align:center;">Don't have an account? <a href="./sign_up.html"
                     style="text-decoration: none;">Create your
                     account</a></p>
@@ -94,6 +113,36 @@
 
 </body>
 <script>
+
+    document.querySelector("form").addEventListener("submit", myfun);
+    let arr = JSON.parse(localStorage.getItem("user")) || [];
+    function myfun(event) {
+        event.preventDefault();
+        if (arr.length == 0) {
+            alert.localStorage("Please Register First!");
+            window.location = "./sign_up.html";
+        }
+        else if (arr.length != 0) {
+            let email = document.querySelector("#email").value;
+            let password = document.querySelector("#password").value;
+            let b = false;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].email == email && arr[i].password == password) {
+                    b = true;
+                }
+            }
+            if (b == true) {
+                alert("Login Sucessful!");
+                window.location = "./index.html";
+            }
+            else if (b == false) {
+                alert("Wrong Email/Password");
+            }
+        }
+    }
+
+
+
     let opennav = () => {
         document.querySelector(".sidenav").style.width = "250px";
     }

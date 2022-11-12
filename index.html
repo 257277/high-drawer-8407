@@ -41,9 +41,9 @@
         <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
 
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
-        <hr style="width:100%;text-align:left;margin-left:0;border:0.5px solid gray;">
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
+
 
     </div>
 
@@ -53,14 +53,14 @@
         <p style="font-size: 20px;">The One Stop to Upgrade Your Resume. Expand Your Skillset. Do An Internship. Get
             Placed</p>
         <div id="srchfltr">
-            <input placeholder="City Name">
-            <select name="" id="type">
+
+            <select id="type">
                 <option value="Type...">Type</option>
                 <option value="Full Time">Full Time</option>
-                <option value="Full Time">Part Time</option>
-                <option value="Full & Part Time">Full & Part Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Intern">Intern</option>
             </select>
-            <select name="" id="Preferences">
+            <select id="Preferences">
                 <option value="Preferences...">Preferences</option>
                 <option value="Content Writing">Content Writing</option>
                 <option value="Business Development">Business Development</option>
@@ -70,8 +70,10 @@
                 <option value="Graphic Designing">Graphic Designing</option>
             </select>
             <p style="margin-left:30px ;">OR</p>
-            <input type="text" placeholder="Search">
-            <button>Search</button>
+
+            <input type="text" placeholder="Search" id="searchByType">
+            <button id="searchByButton">Search</button>
+
         </div>
     </div>
 
@@ -93,36 +95,40 @@
         <h1>LET'S GET SOME WORK EXPERIENCE</h1>
         <div class="cate">
 
-            <div>
+
+            <div id="marketing">
                 <img src="./image/market.jpg" alt="">
                 <h2>MARKETING</h2>
             </div>
-            <div>
+            <div id="business">
                 <img src="./image/business.jpg" alt="">
                 <h2>BUSINESS DEVELOPMENT</h2>
             </div>
-            <div>
+            <div id="content">
                 <img src="./image/content.png" alt="">
                 <h2>CONTENT WRITING</h2>
             </div>
-            <div>
+            <div id="graphic">
                 <img src="./image/graphic.webp" alt="">
                 <h2>GRAPHIC DESIGN</h2>
             </div>
-            <div>
+            <div id="finance">
+
                 <img src="./image/finance.jpg" alt="">
                 <h2>FINANCE</h2>
 
             </div>
-            <div>
+
+            <div id="human">
                 <img src="./image/human.jpg" alt="">
                 <h2>HUMAN RESOURCE</h2>
             </div>
-            <div>
+            <div id="engg">
                 <img src="./image/engg.webp" alt="">
                 <h2>ENGINEERING</h2>
             </div>
-            <div>
+            <div id="intern">
+
                 <img src="./image/intern.png" alt="">
                 <h2>INTERNSHIP</h2>
             </div>
@@ -133,19 +139,18 @@
         <h1>HOW ABOUT UPSKILLING ?</h1>
         <div id="upskilling1">
 
-            <div>
+
+            <div id="tally">
                 <img src="./image/stock.webp" alt="">
 
-
                 <h2>Tally + GST Course</h2>
-
-
             </div>
-            <div>
+            <div id="digital">
                 <img src="./image/market.jpg" alt="">
                 <h2>DIGITAL MARKETING</h2>
             </div>
-            <div>
+            <div id="web">
+
                 <img src="./image/web.png" alt="">
                 <h2>WEB DEVELOPMENT</h2>
             </div>
@@ -171,7 +176,9 @@
             <div class="swiper-slide">
                 <div>
                     <img src="./image/images (1).jpeg" alt="">
-                    <p style="font-size: 20px;">Wonder Women</p>
+
+                    <h2 style="font-size: 20px;">Wonder Women</h2>
+
                 </div>
                 <div>
                     <p>"We have been using InternTheory for over a year now and are very happy with the quality of
@@ -182,7 +189,9 @@
             <div class="swiper-slide">
                 <div>
                     <img src="./image/images (2).jpeg" alt="">
-                    <p style="font-size: 20px;">James</p>
+
+                    <h2 style="font-size: 20px;">James</h2>
+
                 </div>
                 <div>
                     <p>"I created my profile because I had before Intern Theory, not come across a consultancy that
@@ -193,7 +202,9 @@
             <div class="swiper-slide">
                 <div>
                     <img src="./image/images.jpeg" alt="">
-                    <p style="font-size: 20px;">Thomas</p>
+
+                    <h2 style="font-size: 20px;">Thomas</h2>
+
                 </div>
                 <div>
                     <p>"If you are more than satisfied with a particular product/firm who gives you more than you expect
@@ -279,12 +290,106 @@
 
 </body>
 <script>
+
+
+
+    localStorage.setItem('filter', null);
+    localStorage.setItem('type', null);
+    localStorage.setItem("name", null);
+    document.querySelector("#type").addEventListener("change", () => {
+        localStorage.setItem('type', JSON.stringify("category"));
+        localStorage.setItem('filter', JSON.stringify(event.target.value));
+        window.location = "./job.html";
+    });
+    document.querySelector("#Preferences").addEventListener("change", () => {
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify(event.target.value));
+        window.location = "./job.html";
+    });
+
+    document.querySelector("#searchByButton").addEventListener("click", () => {
+        let x = document.querySelector('#searchByType').value;
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify(x));
+        window.location = "./job.html";
+    })
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    document.querySelector("#marketing").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify("Digital Marketing"));
+        window.location = "./job.html";
+    })
+
+    document.querySelector("#business").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify("Business Development"));
+        window.location = "./job.html";
+    })
+
+    document.querySelector("#content").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify("Content Writing"));
+        window.location = "./job.html";
+    })
+
+    document.querySelector("#graphic").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify("Graphic Design"));
+        window.location = "./job.html";
+    })
+
+    document.querySelector("#finance").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify("Finance"));
+        window.location = "./job.html";
+    })
+
+    document.querySelector("#human").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("title"));
+        localStorage.setItem('filter', JSON.stringify("human"));
+        window.location = "./job.html";
+    })
+
+    document.querySelector("#engg").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("Engg"));
+        localStorage.setItem('filter', JSON.stringify(event.target.value));
+        window.location = "./job.html";
+    })
+
+    document.querySelector("#intern").addEventListener("click", () => {
+        localStorage.setItem('type', JSON.stringify("category"));
+        localStorage.setItem('filter', JSON.stringify("Intern"));
+        window.location = "./job.html";
+    })
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+    document.querySelector("#tally").addEventListener("click", () => {
+        localStorage.setItem("name", JSON.stringify("Tally GST Course"));
+        window.location = "./courses.html";
+    })
+
+    document.querySelector("#digital").addEventListener("click", () => {
+        localStorage.setItem("name", JSON.stringify("Digital Marketing"));
+        window.location = "./courses.html";
+    })
+    document.querySelector("#web").addEventListener("click", () => {
+        localStorage.setItem("name", JSON.stringify("Web Development"));
+        window.location = "./courses.html";
+    })
+
     let opennav = () => {
         document.querySelector(".sidenav").style.width = "250px";
     }
     let closenav = () => {
         document.querySelector(".sidenav").style.width = "0px";
     }
+
 </script>
 
 </html>

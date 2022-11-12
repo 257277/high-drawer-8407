@@ -4,7 +4,9 @@
     height: 400px;
     text-align: center;
     padding-top: 120px;
-    background-color: rgb(44, 43, 43);
+
+    background-color: #1f6feb;
+
     color: white;
 }
 
@@ -16,27 +18,31 @@ a {
 
 
 #srchfltr {
-    border: 1px solid black;
+
     width: 80%;
     height: 100px;
     margin: auto;
     display: flex;
+    justify-content: space-around;
     align-items: center;
     border-radius: 10px;
-    background-color: rgba(230, 228, 228, 0.3);
+    background-color: rgba(230, 228, 228, 0.4);
+
 }
 
 #srchfltr input,
 select,
 button {
-    margin-left: 30px;
+
     font-size: 20px;
 
 }
 
 #srchfltr input,
 select {
-    width: 195px;
+
+    width: 250px;
+
     height: 40px;
     color: gray;
     border-radius: 5px;
@@ -46,11 +52,16 @@ select {
 #srchfltr button {
     width: 120px;
     height: 45px;
-    background-color: red;
+
+    background-color: #0d419d;
+
     color: white;
     border: none;
     font-size: 20px;
     border-radius: 5px;
+
+    border: 1px solid white;
+
 }
 
 #opportunity {
@@ -75,10 +86,14 @@ select {
 
 #opportunity div:nth-child(1) {
     padding-top: 100px;
+
+    color: #1158c7;
+
 }
 
 #opportunity div:nth-child(1) h1 {
     font-size: 30px;
+
 }
 
 #experience {
@@ -89,6 +104,8 @@ select {
     text-align: center;
     margin-top: 60px;
 
+    color: #1158c7;
+
 }
 
 #experience .cate {
@@ -98,10 +115,14 @@ select {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+
 }
 
 #experience .cate div {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    color: #1158c7;
+
 }
 
 #experience .cate div img {
@@ -117,6 +138,9 @@ select {
     margin: auto;
     text-align: center;
     margin-top: 60px;
+
+    color: #1158c7;
+
 }
 
 #upskilling1 {
@@ -128,6 +152,9 @@ select {
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     text-align: center;
+
+    color: #1158c7;
+
 }
 
 #upskilling1 div {
@@ -147,6 +174,9 @@ select {
     height: 300px;
     display: flex;
     margin-top: 60px;
+
+    color: #1158c7;
+
 }
 
 #desc>div {
@@ -172,6 +202,8 @@ select {
     margin-top: 60px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    color: #1158c7;
 
 }
 
@@ -200,7 +232,9 @@ select {
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: rgb(42, 58, 90);
+
+    background-color: #1f6feb;
+
     color: white;
     font-size: 15px;
     margin-top: 60px;

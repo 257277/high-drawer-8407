@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="./nav.css">
     <style>
         #jobs {
-            border: 1px solid black;
+
+
             width: 70%;
             margin: auto;
             height: auto;
+            color: #1f6feb;
 
         }
 
@@ -23,8 +25,9 @@
             padding: 40px;
         }
 
-        #jobs>div h2 {
-            color: blue;
+        #jobs>div h1 {
+            color: #0d419d;
+
         }
 
         #jobs>div button {
@@ -33,7 +36,15 @@
             border-radius: 5px;
             border: none;
             color: white;
-            background-color: blue;
+
+            background-color: #1f6feb;
+            font-size: 25px;
+        }
+
+        #heading {
+            text-align: center;
+            color: #1D4ED8;
+
         }
     </style>
 
@@ -61,10 +72,11 @@
         <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
         <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
-        <hr style="width:100%;text-align:left;margin-left:0;border:0.5px solid gray;">
+
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
+    <h1 id="heading">JOBS</h1>
 
     <div id="jobs">
 
@@ -78,22 +90,49 @@
 </body>
 
 <script>
-    let url = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/Jobs"
+
+    let filter = JSON.parse(localStorage.getItem("filter"));
+    let title = JSON.parse(localStorage.getItem("type"));
+    let url = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/Jobs";
+    let furl = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/Jobs?";
     let data = [];
+
+    if (filter == null) {
+        job();
+    }
+    else (filter != null)
+    {
+        filterdata();
+    }
+    async function filterdata() {
+        furl += title + "=" + filter + "";
+        let res = await fetch(furl);
+        let out = await res.json();
+        let data = out;
+        displayData(data);
+    }
+
+
+
     async function job() {
         let res = await fetch(url);
         let out = await res.json();
         data = out;
         displayData(data)
     }
-    job();
+
+
     function displayData(data) {
+        document.querySelector("#jobs").innerText == "";
+
         data.forEach((elem) => {
             let di = document.createElement("div");
             let dd = document.createElement("div");
             let d2 = document.createElement("div");
             let d = document.createElement("div");
-            let title = document.createElement("h2");
+
+            let title = document.createElement("h1");
+
             title.innerText = elem.title;
 
             let cname = document.createElement('p');
@@ -128,6 +167,11 @@
             cty.innerText = "City: " + elem.city;
             let btn = document.createElement("button");
             btn.innerText = "Apply"
+
+            btn.addEventListener("click", () => {
+                alert("Your application is recorded");
+            })
+
 
             di.append(image);
             dd.append(title, cname, cate, vcnc, durat, cty, sdate, edate, desc, slry, btn)

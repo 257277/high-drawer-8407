@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Register</title>
+
     <link rel="stylesheet" href="./nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <style>
         h1 {
             text-align: center;
+
+            color: #0d419d;
+
         }
 
         #loginbox {
@@ -22,6 +27,7 @@
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             padding-top: 10px;
             padding-left: 10px;
+
         }
 
         form {
@@ -32,6 +38,7 @@
             display: flex;
             flex-direction: column;
             font-size: 30px;
+
         }
 
         form input {
@@ -49,11 +56,19 @@
             margin-bottom: 20px;
             border-radius: 5px;
             border: 1px solid black;
-            color: grey;
+
+            /* color: grey; */
+            background-color: white;
+        }
+
+        form input[type=submit] {
+            background-color: white;
+            color: #0d419d;
         }
 
         form input[type=submit]:hover {
-            background-color: blue;
+            background-color: #1f6feb;
+
             color: white;
         }
     </style>
@@ -82,7 +97,7 @@
         <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
         <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
-        <hr style="width:100%;text-align:left;margin-left:0;border:0.5px solid gray;">
+
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
@@ -91,14 +106,16 @@
         <h1>Register Candidate</h1>
         <p style="font-size:20px;text-align:center;">Already have an account? <a href="./sign_in.html"
                 style="text-decoration: none;">Sign in</a></p>
-        <form action="submit">
-            <input type="text" placeholder="First Name">
-            <input type="text" placeholder="Last Name">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <input type="number" placeholder="Mobile Number">
-            <input type="text" placeholder="City Name">
-            <select name="" id="Preferences">
+
+        <form>
+            <input type="text" placeholder="First Name" id="firstName">
+            <input type="text" placeholder="Last Name" id="lastName">
+            <input type="email" placeholder="Email" id="email">
+            <input type="password" placeholder="Password" id="password">
+            <input type="number" placeholder="Mobile Number" id="mobile">
+            <input type="text" placeholder="City Name" id="city">
+            <select id="Preferences">
+
                 <option value="Preferences...">Preferences</option>
                 <option value="Content Writing">Content Writing</option>
                 <option value="Business Development">Business Development</option>
@@ -107,15 +124,22 @@
                 <option value="Finance">Finance</option>
                 <option value="Graphic Designing">Graphic Designing</option>
             </select>
-            <select>
+
+            <select id="find">
+
                 <option value="How did you find us">How did you find us?</option>
                 <option value="From a friend">From a Friend</option>
                 <option value="Google Search Result">Google Search Result</option>
                 <option value="Google Ads">Google Ads</option>
                 <option value="Socila Media">Social Media</option>
             </select>
-            <select>
+
+            <select id="looking">
                 <option value="What are you looking for?">What are you looking for?</option>
+                <option value="Internship">Internship</option>
+                <option value="Jobs">Jobs</option>
+                <option value="Both">Both</option>
+
             </select>
             <input type="submit" value="Sign Up">
         </form>
@@ -123,6 +147,55 @@
 
 </body>
 <script>
+
+
+    document.querySelector("form").addEventListener("submit", genrateData);
+    let userData = JSON.parse(localStorage.getItem("user")) || [];
+
+    function genrateData(event) {
+        event.preventDefault();
+        let FirstName = document.querySelector("#firstName").value;
+        let lastName = document.querySelector("#lastName").value;
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+        let number = document.querySelector("#mobile").value;
+        let city = document.querySelector("#city").value;
+        let preferences = document.querySelector("#Preferences").value;
+        let find = document.querySelector("#find").value;
+        let looking = document.querySelector("#looking").value;
+        let obj = { FirstName, lastName, email, password, number, city, preferences, find, looking };
+        if (userData.length == 0) {
+            userData.push(obj);
+            localStorage.setItem("user", JSON.stringify(userData));
+            alert("Registration Sucessful!");
+        }
+        else if (userData.length != 0) {
+            let b = false;
+            for (let i = 0; i < userData.length; i++) {
+                if (obj.email == userData[i].email || obj.number == userData[i].number) {
+                    b = true;
+                }
+            }
+            if (b == false) {
+                userData.push(obj);
+                localStorage.setItem("user", JSON.stringify(userData));
+                alert("Registration Sucessful!");
+            }
+            else (b == true)
+            {
+                alert("Already Registed!");
+                window.location = "./sign_in.html";
+            }
+        }
+    }
+
+
+
+
+
+
+
+
 
     let opennav = () => {
         document.querySelector(".sidenav").style.width = "250px";
