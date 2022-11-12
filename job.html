@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+        #jobs {
+
+            width: 70%;
+            margin: auto;
+            height: auto;
+            color: #1f6feb;
+        }
+
+        #jobs>div {
+            display: flex;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 40px;
+        }
+
+        #jobs>div h1 {
+            color: #0d419d;
+        }
+
+        #jobs>div button {
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #1f6feb;
+            font-size: 25px;
+        }
+
+        #heading {
+            text-align: center;
+            color: #1D4ED8;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="nav">
+        <div id="nav1">
+            <span class="slidingmenu" onclick="opennav()">&#9776;</span>
+            <img src="./image/logo.png" alt="logo">
+        </div>
+        <div id="nav2">
+            <a href="./cart.html" class="placeicon"> &#xf07a;</a>
+            <button><a href="./sign_in.html">SIGN IN</a></button>
+        </div>
+    </div>
+    <div class="sidenav">
+        <div class="sidenav1">
+            <span onclick="closenav()">&#9776;</span>
+            <img src="./image/logo.png" alt="logo">
+        </div>
+        <a href="./index.html" class="placeicon">&#xf015; <span class="text">Home</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca;<span class="text">Internships</span> </a>
+        <a href="./job.html" class="placeicon">&#xf0b1; <span class="text">Jobs</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
+        <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
+        <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
+        <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
+        <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
+    </div>
+    <h1 id="heading">JOBS</h1>
+    <div id="jobs">
+
+
+    </div>
+
+
+
+
+
+</body>
+
+<script>
+    let filter = JSON.parse(localStorage.getItem("filter"));
+    let title = JSON.parse(localStorage.getItem("type"));
+    let url = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/Jobs";
+    let furl = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/Jobs?";
+    let data = [];
+
+    if (filter == null) {
+        job();
+    }
+    else (filter != null)
+    {
+        filterdata();
+    }
+    async function filterdata() {
+        furl += title + "=" + filter + "";
+        let res = await fetch(furl);
+        let out = await res.json();
+        let data = out;
+        displayData(data);
+    }
+
+
+    async function job() {
+        let res = await fetch(url);
+        let out = await res.json();
+        data = out;
+        displayData(data)
+    }
+
+    function displayData(data) {
+        document.querySelector("#jobs").innerText == "";
+        data.forEach((elem) => {
+            let di = document.createElement("div");
+            let dd = document.createElement("div");
+            let d2 = document.createElement("div");
+            let d = document.createElement("div");
+            let title = document.createElement("h1");
+            title.innerText = elem.title;
+
+            let cname = document.createElement('p');
+            cname.innerText = "Company: " + elem.comapny_name;
+
+            let image = document.createElement("img")
+            image.setAttribute("src", elem.image);
+
+            let cate = document.createElement('p');
+            cate.innerText = "Job Type :" + elem.category;
+
+            let sdate = document.createElement('p');
+            sdate.innerText = "Application Start :" + elem["start-date"];
+
+            let edate = document.createElement('p');
+            edate.innerText = "Application Stop :" + elem["end-date"];
+
+
+            let desc = document.createElement("p");
+            desc.innerText = "Description:" + elem.description;
+
+            let slry = document.createElement("p");
+            slry.innerText = "Salary: " + elem.salary;
+
+            let vcnc = document.createElement('p');
+            vcnc.innerText = "Opening: " + elem.opening;
+
+            let durat = document.createElement("p");
+            durat.innerText = "Duration: " + elem.duration;
+
+            let cty = document.createElement("p");
+            cty.innerText = "City: " + elem.city;
+            let btn = document.createElement("button");
+            btn.innerText = "Apply"
+            btn.addEventListener("click", () => {
+                alert("Your application is recorded");
+            })
+
+            di.append(image);
+            dd.append(title, cname, cate, vcnc, durat, cty, sdate, edate, desc, slry, btn)
+            d.append(di, dd);
+            document.querySelector("#jobs").append(d);
+        });
+    }
+
+
+
+
+
+
+
+
+
+    let opennav = () => {
+        document.querySelector(".sidenav").style.width = "250px";
+    }
+    let closenav = () => {
+        document.querySelector(".sidenav").style.width = "0px";
+    }
+</script>
+
+
+
+</html>

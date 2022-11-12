@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="./nav.css">
+    <style>
+        #courses {
+
+            width: 70%;
+            margin: auto;
+            height: auto;
+            margin-top: 50px;
+            color: #1f6feb;
+        }
+
+        #courses>div {
+            display: flex;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        #courses>div div:nth-child(1) img {
+            width: 300px;
+            height: 300px;
+
+        }
+
+        #courses>div div:nth-child(2) {
+
+            padding: 30px;
+        }
+
+        #courses>div div:nth-child(2) h1 {
+            color: #0d419d;
+        }
+
+        #courses>div div:nth-child(2) button {
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #1f6feb;
+            font-size: 25px;
+        }
+
+        #courses>div div:nth-child(2) p {
+            font-size: 20px;
+        }
+
+        #heading {
+            text-align: center;
+            color: #1D4ED8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <div id="nav1">
+            <span class="slidingmenu" onclick="opennav()">&#9776;</span>
+
+        </div>
+        <div id="nav2">
+            <a href="./cart.html" class="placeicon"> &#xf07a;</a>
+            <button><a href="./sign_in.html">SIGN IN</a></button>
+        </div>
+    </div>
+    <div class="sidenav">
+        <div class="sidenav1">
+            <span onclick="closenav()">&#9776;</span>
+            <img src="./image/logo.png" alt="logo">
+        </div>
+        <a href="./index.html" class="placeicon">&#xf015; <span class="text">Home</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca;<span class="text">Internships</span> </a>
+        <a href="./job.html" class="placeicon">&#xf0b1; <span class="text">Jobs</span></a>
+        <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
+        <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
+        <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
+        <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
+        <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
+    </div>
+    <h1 id="heading">COURSES</h1>
+    <div id="courses">
+
+    </div>
+</body>
+<script>
+    let url = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/course";
+    let furl = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/course?title=";
+
+    let x = JSON.parse(localStorage.getItem("name"));
+
+
+    let data = [];
+    async function courses() {
+        let res = await fetch(url);
+        let out = await res.json();
+        data = out;
+        displayData(data)
+    }
+    if (x == null) {
+        courses();
+    }
+    else if (x != null) {
+        filterdata();
+
+    }
+    async function filterdata() {
+        furl += x;
+        let res = await fetch(furl);
+        let out = await res.json();
+        let data = out;
+        displayData(data);
+    }
+
+
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function displayData(data) {
+        document.querySelector("#courses").innerText = "";
+        data.forEach((elem) => {
+            let di = document.createElement("div");
+            let d = document.createElement("div");
+            let d1 = document.createElement("div");
+            let title = document.createElement("h1");
+            title.innerText = elem.title;
+
+            let desc = document.createElement("p");
+            desc.innerText = elem.description;
+
+            let image = document.createElement("img");
+            image.setAttribute("src", elem.image);
+
+            let price = document.createElement("p");
+            price.innerText = elem.price;
+
+            let btn = document.createElement("button");
+            btn.innerText = "Add To Cart";
+            btn.addEventListener("click", () => {
+                cart.push(elem);
+                localStorage.setItem("cart", JSON.stringify(cart));
+            });
+
+            d.append(image);
+            d1.append(title, desc, price, btn)
+            di.append(d, d1);
+            document.querySelector("#courses").append(di);
+        });
+    }
+
+    let opennav = () => {
+        document.querySelector(".sidenav").style.width = "250px";
+    }
+    let closenav = () => {
+        document.querySelector(".sidenav").style.width = "0px";
+    }
+
+</script>
+
+</html>
