@@ -16,6 +16,7 @@
             height: auto;
             margin-top: 50px;
             color: #1f6feb;
+
         }
 
         #courses>div {
@@ -34,8 +35,10 @@
             padding: 30px;
         }
 
+
         #courses>div div:nth-child(2) h1 {
             color: #0d419d;
+
         }
 
         #courses>div div:nth-child(2) button {
@@ -44,18 +47,22 @@
             border-radius: 5px;
             border: none;
             color: white;
+
             background-color: #1f6feb;
             font-size: 25px;
+
         }
 
         #courses>div div:nth-child(2) p {
             font-size: 20px;
         }
 
+
         #heading {
             text-align: center;
             color: #1D4ED8;
         }
+
     </style>
 </head>
 
@@ -63,6 +70,8 @@
     <div id="nav">
         <div id="nav1">
             <span class="slidingmenu" onclick="opennav()">&#9776;</span>
+
+            <img src="./image/logo.png" alt="logo">
 
         </div>
         <div id="nav2">
@@ -81,19 +90,23 @@
         <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
         <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
+
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
     <h1 id="heading">COURSES</h1>
+
     <div id="courses">
 
     </div>
 </body>
 <script>
     let url = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/course";
+
     let furl = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/course?title=";
 
     let x = JSON.parse(localStorage.getItem("name"));
+
 
 
     let data = [];
@@ -103,6 +116,7 @@
         data = out;
         displayData(data)
     }
+
     if (x == null) {
         courses();
     }
@@ -128,7 +142,9 @@
             let di = document.createElement("div");
             let d = document.createElement("div");
             let d1 = document.createElement("div");
+
             let title = document.createElement("h1");
+
             title.innerText = elem.title;
 
             let desc = document.createElement("p");
@@ -142,10 +158,12 @@
 
             let btn = document.createElement("button");
             btn.innerText = "Add To Cart";
+
             btn.addEventListener("click", () => {
                 cart.push(elem);
                 localStorage.setItem("cart", JSON.stringify(cart));
             });
+
 
             d.append(image);
             d1.append(title, desc, price, btn)
@@ -153,6 +171,7 @@
             document.querySelector("#courses").append(di);
         });
     }
+
 
     let opennav = () => {
         document.querySelector(".sidenav").style.width = "250px";

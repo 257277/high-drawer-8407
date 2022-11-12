@@ -11,6 +11,7 @@
     <style>
         #detail {
             float: right;
+
             width: 30%;
             height: 400px;
             margin-top: 50px;
@@ -30,10 +31,12 @@
             margin-left: 10%;
 
 
+
         }
 
         #cart_item>div {
             display: flex;
+
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             color: #0d419d;
         }
@@ -43,7 +46,6 @@
         }
 
         #cart_item>div img {
-
             width: 200px;
             height: 200px;
 
@@ -51,7 +53,9 @@
 
         #cart_item>div div:nth-child(2) {
 
+
             padding-left: 100px;
+
         }
 
         #cart_item>div div:nth-child(2) button {
@@ -60,8 +64,10 @@
             border-radius: 5px;
             border: none;
             color: white;
+
             background-color: #1f6feb;
             font-size: 25px;
+
         }
 
         h1 {
@@ -74,9 +80,12 @@
             border-radius: 5px;
             border: none;
             color: white;
+
             background-color: #1f6feb;
             font-size: 25px;
         }
+
+
     </style>
 </head>
 
@@ -102,6 +111,7 @@
         <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
         <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
+
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
@@ -114,6 +124,7 @@
             <h2>Total: <span id="finalprice">0</span></h2>
         </div>
         <button onclick="checkout()">CHECKOUT</button>
+
     </div>
 
     <div id="cart_item"></div>
@@ -182,6 +193,7 @@
     function checkout() {
         alert('Thanks For Shopping........')
     }
+
 
 
     let opennav = () => {

@@ -44,24 +44,30 @@ body {
     color: black;
 }
 
+
 #nav2 button a {
     text-decoration: none;
     color: white;
+
 }
 
 #nav2 button {
     width: 100px;
     height: 40px;
     font-size: 20px;
+
     background-color: #0d419d;
     border: none;
     border-radius: 5px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
 }
 
 .sidenav {
     position: fixed;
+
     background-color: #3B82F6;
+
     width: 0px;
     display: block;
     height: 100%;
@@ -80,7 +86,9 @@ body {
     text-decoration: none;
     font-size: 20px;
     margin-left: 20px;
+
     color: white;
+
 }
 
 .sidenav .text {
@@ -102,5 +110,7 @@ body {
 .sidenav1 img {
     height: 80px;
     padding-left: 45px;
+
     margin-top: -10px;
+
 }

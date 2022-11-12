@@ -11,10 +11,12 @@
     <style>
         #jobs {
 
+
             width: 70%;
             margin: auto;
             height: auto;
             color: #1f6feb;
+
         }
 
         #jobs>div {
@@ -25,6 +27,7 @@
 
         #jobs>div h1 {
             color: #0d419d;
+
         }
 
         #jobs>div button {
@@ -33,6 +36,7 @@
             border-radius: 5px;
             border: none;
             color: white;
+
             background-color: #1f6feb;
             font-size: 25px;
         }
@@ -40,6 +44,7 @@
         #heading {
             text-align: center;
             color: #1D4ED8;
+
         }
     </style>
 
@@ -67,10 +72,12 @@
         <a href="./job.html" class="placeicon">&#xf0ca; <span class="text">Post Internship</span></a>
         <a href="./courses.html" class="placeicon">&#xf02d;<span class="text">Courses</span> </a>
         <a href="#" class="placeicon">&#xf879; <span class="text">Contact Us</span></a>
+
         <a href="./sign_up.html" class="placeicon">&#xf039;<span class="text">Register</span> </a>
         <a href="./sign_in.html" class="placeicon">&#xf2f6;<span class="text">Login</span></a>
     </div>
     <h1 id="heading">JOBS</h1>
+
     <div id="jobs">
 
 
@@ -83,6 +90,7 @@
 </body>
 
 <script>
+
     let filter = JSON.parse(localStorage.getItem("filter"));
     let title = JSON.parse(localStorage.getItem("type"));
     let url = "https://636a7ddfc07d8f936d9fb03d.mockapi.io/Jobs";
@@ -105,6 +113,7 @@
     }
 
 
+
     async function job() {
         let res = await fetch(url);
         let out = await res.json();
@@ -112,14 +121,18 @@
         displayData(data)
     }
 
+
     function displayData(data) {
         document.querySelector("#jobs").innerText == "";
+
         data.forEach((elem) => {
             let di = document.createElement("div");
             let dd = document.createElement("div");
             let d2 = document.createElement("div");
             let d = document.createElement("div");
+
             let title = document.createElement("h1");
+
             title.innerText = elem.title;
 
             let cname = document.createElement('p');
@@ -154,9 +167,11 @@
             cty.innerText = "City: " + elem.city;
             let btn = document.createElement("button");
             btn.innerText = "Apply"
+
             btn.addEventListener("click", () => {
                 alert("Your application is recorded");
             })
+
 
             di.append(image);
             dd.append(title, cname, cate, vcnc, durat, cty, sdate, edate, desc, slry, btn)
